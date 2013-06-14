@@ -1,0 +1,17 @@
+{
+  "name": "n-engine",
+  "version": "0.1.0",
+  "ignore": [
+    "**/.*",
+    "**/Debug",
+    "**/Release",
+    "**/Test",
+    "**/*.sdf",
+    "**/*.suo",
+ 	"**/*.user",
+    "external-components"
+  ],
+  "dependencies": {
+    "n-test": "git://github.com/nova-compiler/n-test.git"
+  },
+}
