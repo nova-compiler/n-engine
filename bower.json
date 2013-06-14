@@ -13,5 +13,5 @@
   ],
   "dependencies": {
     "n-test": "git://github.com/nova-compiler/n-test.git"
-  },
+  }
 }
