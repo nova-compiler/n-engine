@@ -12,7 +12,7 @@
 
 namespace Nova {
 
-	typedef void * staddr_t;
+	typedef std::int8_t * staddr_t;
 	typedef void * refaddr_t;
 
 	template <typename _Ty>
@@ -21,9 +21,39 @@ namespace Nova {
 	};
 
 	template <>
+	struct EngineTypeTraits<std::int8_t> {
+		static const bool Supported = true;
+		static const size_t Size = 8;
+	};
+
+	template <>
+	struct EngineTypeTraits<std::int16_t> {
+		static const bool Supported = true;
+		static const size_t Size = 2;
+	};
+	
+	template <>
 	struct EngineTypeTraits<std::int32_t> {
 		static const bool Supported = true;
 		static const size_t Size = 4;
+	};
+
+	template <>
+	struct EngineTypeTraits<std::int64_t> {
+		static const bool Supported = true;
+		static const size_t Size = 8;
+	};
+
+	template <>
+	struct EngineTypeTraits<staddr_t> {
+		static const bool Supported = true;
+		static const size_t Size = sizeof(staddr_t);
+	};
+	
+	template <>
+	struct EngineTypeTraits<refaddr_t> {
+		static const bool Supported = true;
+		static const size_t Size = sizeof(refaddr_t);
 	};
 
 } // namespace Nova

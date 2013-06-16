@@ -31,7 +31,7 @@ TEST_UNIT("runtime-environment\\runtime-stack")
 		RuntimeFixedStack stack(20);
 		
 		stack.Push(int32_t(10));
-		StackAddress address = stack.GetCurrentAddress();
+		staddr_t address = stack.GetCurrentAddress();
 		stack.Push(int32_t(60));
 		stack.Push(int32_t(50));
 
@@ -55,7 +55,7 @@ TEST_UNIT("runtime-environment\\runtime-stack")
 
 		stack.Push(int32_t(5));
 
-		StackAddress address = stack.GetCurrentAddress();
+		staddr_t address = stack.GetCurrentAddress();
 		try {
 			stack.Get<int32_t>(address);
 			testContext.Fail();

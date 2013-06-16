@@ -17,8 +17,6 @@ namespace Nova {
 
 	INHERIT_EXCEPTION(StackException, RuntimeException)
 
-	typedef std::int8_t * StackAddress;
-
 	/// <summary>
 	/// A stack managment class for the virtual execution in the engine. It provides a fixed stack
 	/// space for storage.
@@ -31,17 +29,17 @@ namespace Nova {
 		/// <summary>
 		/// Address for the stack buffer.
 		/// </summary>
-		StackAddress _stack;
+		staddr_t _stack;
 
 		/// <summary>
 		/// Current position of the buffer, new elements will be inserted at this position.
 		/// </summary>
-		StackAddress _stackOffset;
+		staddr_t _stackOffset;
 
 		/// <summary>
 		/// Address for the limit of the stack.
 		/// </summary>
-		StackAddress _stackEnd;
+		staddr_t _stackEnd;
 
 		/// <summary>
 		/// Utility function to validate if the type is supported by the engine.
@@ -59,7 +57,7 @@ namespace Nova {
 		/// <param name='address'>Address to check.</param>
 		template <typename _Ty>
 		inline void _ValidateAddress(
-			StackAddress address
+			staddr_t address
 			) const {
 				if (address < _stack || _stackOffset < address + EngineTypeTraits<_Ty>::Size)
 					throw InvalidArgumentException("The address is invalid.");
@@ -91,7 +89,7 @@ namespace Nova {
 		/// <param name='address'>Address of the value.</param>
 		template <typename _Ty>
 		inline _Ty Get(
-			StackAddress address
+			staddr_t address
 			) const {
 				_ValidateType<_Ty>();
 				_ValidateAddress<_Ty>(address);
@@ -105,7 +103,7 @@ namespace Nova {
 		/// <param name='value'>Value to be stored.</param>
 		template <typename _Ty>
 		inline void Set(
-			StackAddress address, const _Ty & value
+			staddr_t address, const _Ty & value
 			) {
 				_ValidateType<_Ty>();
 				_ValidateAddress<_Ty>(address);
@@ -115,7 +113,7 @@ namespace Nova {
 		/// <summary>
 		/// Returns current offset position of the stack.
 		/// </summary>
-		inline StackAddress GetCurrentAddress(
+		inline staddr_t GetCurrentAddress(
 			) const {
 				return _stackOffset;
 			}
@@ -143,7 +141,7 @@ namespace Nova {
 				if (_stackEnd - _stackOffset < EngineTypeTraits<_Ty>::Size)
 					throw StackException("Value can't pushed to stack. Stack remaining space too small.");
 				
-				StackAddress currentAddress = _stackOffset;
+				staddr_t currentAddress = _stackOffset;
 				_stackOffset += EngineTypeTraits<_Ty>::Size;
 				Set<_Ty>(currentAddress, value);
 			}
