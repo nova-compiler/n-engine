@@ -7,18 +7,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "n-test", "external-componen
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
+		Test|Win32 = Test|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A27314EB-CFBA-4450-8B68-D00D64192ECE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{A27314EB-CFBA-4450-8B68-D00D64192ECE}.Debug|Win32.Build.0 = Debug|Win32
 		{A27314EB-CFBA-4450-8B68-D00D64192ECE}.Release|Win32.ActiveCfg = Release|Win32
 		{A27314EB-CFBA-4450-8B68-D00D64192ECE}.Release|Win32.Build.0 = Release|Win32
-		{DD07A21A-C8CE-476D-B799-765FCB95571B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{DD07A21A-C8CE-476D-B799-765FCB95571B}.Debug|Win32.Build.0 = Debug|Win32
+		{A27314EB-CFBA-4450-8B68-D00D64192ECE}.Test|Win32.ActiveCfg = Test|Win32
+		{A27314EB-CFBA-4450-8B68-D00D64192ECE}.Test|Win32.Build.0 = Test|Win32
 		{DD07A21A-C8CE-476D-B799-765FCB95571B}.Release|Win32.ActiveCfg = Release|Win32
 		{DD07A21A-C8CE-476D-B799-765FCB95571B}.Release|Win32.Build.0 = Release|Win32
+		{DD07A21A-C8CE-476D-B799-765FCB95571B}.Test|Win32.ActiveCfg = Debug|Win32
+		{DD07A21A-C8CE-476D-B799-765FCB95571B}.Test|Win32.Build.0 = Debug|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

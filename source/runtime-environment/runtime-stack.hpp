@@ -11,6 +11,7 @@
 #include <cstdint>
 
 #include "..\common\exception.hpp"
+#include "..\common\type-traits.hpp"
 
 namespace Nova {
 
@@ -46,8 +47,8 @@ namespace Nova {
 		/// Utility function to validate if the type is supported by the engine.
 		/// </summary>
 		template <typename _Ty>
-		inline _ValidateType(
-			) {
+		inline void _ValidateType(
+			) const {
 				static_assert(EngineTypeTraits<_Ty>::Supported == true,
 					"Type used is not supported by the engine");
 			}
@@ -57,10 +58,11 @@ namespace Nova {
 		/// </summary>
 		/// <param name='address'>Address to check.</param>
 		template <typename _Ty>
-		inline _ValidateAddress(
+		inline void _ValidateAddress(
 			StackAddress address
-			) {
-				return _stack <= address && address + EngineTypeTraits<_Ty>::Size <= _stackOffset; 
+			) const {
+				if (address < _stack || _stackOffset < address + EngineTypeTraits<_Ty>::Size)
+					throw InvalidArgumentException("The address is invalid.");
 			}
 
 	public:
@@ -90,7 +92,7 @@ namespace Nova {
 		template <typename _Ty>
 		inline _Ty Get(
 			StackAddress address
-			) {
+			) const {
 				_ValidateType<_Ty>();
 				_ValidateAddress<_Ty>(address);
 				return * reinterpret_cast<_Ty *>(address);
@@ -103,7 +105,7 @@ namespace Nova {
 		/// <param name='value'>Value to be stored.</param>
 		template <typename _Ty>
 		inline void Set(
-			StackAddress address, const Ty & value
+			StackAddress address, const _Ty & value
 			) {
 				_ValidateType<_Ty>();
 				_ValidateAddress<_Ty>(address);
@@ -123,7 +125,7 @@ namespace Nova {
 		/// </summary>
 		template <typename _Ty>
 		inline _Ty Pop(
-			) const {
+			) {
 				_ValidateType<_Ty>();
 				_Ty returnValue = Top<_Ty>();
 				_stackOffset -= EngineTypeTraits<_Ty>::Size;
@@ -134,8 +136,8 @@ namespace Nova {
 		/// Pushes a new element at the top of the stack.
 		/// </summary>
 		template <typename _Ty>
-		inline _Ty Push(
-			const Ty & value
+		inline void Push(
+			const _Ty & value
 			) {
 				_ValidateType<_Ty>();
 				if (_stackEnd - _stackOffset < EngineTypeTraits<_Ty>::Size)
@@ -143,7 +145,7 @@ namespace Nova {
 				
 				StackAddress currentAddress = _stackOffset;
 				_stackOffset += EngineTypeTraits<_Ty>::Size;
-				return Set<_Ty>(currentAddress, value);
+				Set<_Ty>(currentAddress, value);
 			}
 
 		/// <summary>
@@ -155,7 +157,7 @@ namespace Nova {
 				_ValidateType<_Ty>();
 				if (_stackOffset - _stack < EngineTypeTraits<_Ty>::Size)
 					throw StackException("Value can't getted from stack. Stack size too small.");
-				return Get<_Ty>(_stackEnd - EngineTypeTraits<_Ty>::Size);
+				return Get<_Ty>(_stackOffset - EngineTypeTraits<_Ty>::Size);
 			}
 	};
 
