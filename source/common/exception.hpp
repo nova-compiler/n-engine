@@ -42,6 +42,7 @@ namespace Nova {
 
 	INHERIT_EXCEPTION(RuntimeException, Exception);
 	INHERIT_EXCEPTION(InvalidArgumentException, RuntimeException);
+	INHERIT_EXCEPTION(NotImplementedException, Exception);
 
 } // namespace Nova
 

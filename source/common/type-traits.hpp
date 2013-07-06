@@ -13,7 +13,10 @@
 namespace Nova {
 
 	typedef std::int8_t * staddr_t;
-	typedef void * refaddr_t;
+	typedef struct refaddr_t_ {} * refaddr_t;
+	typedef struct scoperef_t_ {} * scoperef_t;
+
+	static const scoperef_t InvalidScope = reinterpret_cast<scoperef_t>(-1);
 
 	template <typename _Ty>
 	struct EngineTypeTraits {

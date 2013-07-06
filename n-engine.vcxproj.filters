@@ -35,6 +35,24 @@
     <ClInclude Include="source\common\type-traits.hpp">
       <Filter>source\common</Filter>
     </ClInclude>
+    <ClInclude Include="source\runtime-environment\instruction-set.hpp">
+      <Filter>source\runtime-environment</Filter>
+    </ClInclude>
+    <ClInclude Include="source\common\dynamic-buffer.hpp">
+      <Filter>source\common</Filter>
+    </ClInclude>
+    <ClInclude Include="source\runtime-environment\assembly.hpp">
+      <Filter>source\runtime-environment</Filter>
+    </ClInclude>
+    <ClInclude Include="source\runtime-environment\runtime-scope.hpp">
+      <Filter>source\runtime-environment</Filter>
+    </ClInclude>
+    <ClInclude Include="source\runtime-environment\runtime-context.hpp">
+      <Filter>source\runtime-environment</Filter>
+    </ClInclude>
+    <ClInclude Include="source\runtime-environment\instruction-executor.hpp">
+      <Filter>source\runtime-environment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tests\runtime-environment\runtime-stack-test.cpp">
@@ -42,6 +60,15 @@
     </ClCompile>
     <ClCompile Include="tests\main.cpp">
       <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\runtime-environment\assembly-test.cpp">
+      <Filter>test\runtime-environment</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\runtime-environment\runtime-scope-test.cpp">
+      <Filter>test\runtime-environment</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\runtime-environment\runtime-context-test.cpp">
+      <Filter>test\runtime-environment</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

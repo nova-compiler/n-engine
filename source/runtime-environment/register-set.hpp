@@ -8,13 +8,11 @@
 #ifndef _NOVA_RUNTIME_ENVIRONMENT_REGISTER_SET_HEADER_
 #define _NOVA_RUNTIME_ENVIRONMENT_REGISTER_SET_HEADER_
 
-#include "runtime-stack.hpp"
+#include "..\common\type-traits.hpp"
 
 #include <cstdint>
 
 namespace Nova {
-
-	typedef void * ReferenceAddress;
 
 	enum class Register {
 		// General-porpouse registers. They are 64 bits words.
@@ -32,9 +30,27 @@ namespace Nova {
 	
 	class RegisterSet {
 		std::int64_t _rRegisters[8];
-		ReferenceAddress _mRegisters[4];
-		StackAddress _spRegisters[6];
+		refaddr_t _mRegisters[4];
+		staddr_t _spRegisters[6];
 		bool _cpRegister;
+
+		inline std::int64_t & _GetRValueReference(
+			Register id
+			) {
+				return _rRegisters[static_cast<int>(id)];
+			}
+
+		inline staddr_t & _GetSPValueReference(
+			Register id
+			) {
+				return _spRegisters[static_cast<int>(id) - static_cast<int>(Register::sp0)];
+			}
+
+		inline refaddr_t & _GetMValueReference(
+			Register id
+			) {
+				return _mRegisters[static_cast<int>(id) - static_cast<int>(Register::m0)];
+			}
 
 	public:
 		inline RegisterSet(
@@ -45,10 +61,40 @@ namespace Nova {
 			) {
 			}
 
-		void SetRRegister(
+		inline std::int64_t GetRRegister(
+			Register id
+			) {
+				return _GetRValueReference(id);
+			}
+
+		inline void SetRRegister(
 			Register id, std::int64_t value
 			) {
-				_rRegisters[static_cast<int>(id)] = value;
+				_GetRValueReference(id) = value;
+			}
+
+		inline staddr_t GetSPRegister(
+			Register id
+			) {
+				return _GetSPValueReference(id);
+			}
+
+		inline void SetSPRegister(
+			Register id, staddr_t value
+			) {
+				_GetSPValueReference(id) = value;
+			}
+
+		inline refaddr_t SetMRegister(
+			Register id
+			) {
+				return _GetMValueReference(id);
+			}
+
+		inline void SetMRegister(
+			Register id, refaddr_t value
+			) {
+				_GetMValueReference(id);
 			}
 	};
 

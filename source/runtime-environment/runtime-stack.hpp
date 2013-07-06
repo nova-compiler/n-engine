@@ -25,7 +25,7 @@ namespace Nova {
 	/// The class doesn't track the type for inserted elements. To get a value with a different type
 	/// to the one inserted can give an undefined behavior.
 	/// </remarks>
-	struct RuntimeFixedStack {
+	class RuntimeFixedStack {
 		/// <summary>
 		/// Address for the stack buffer.
 		/// </summary>

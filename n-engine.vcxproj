@@ -81,13 +81,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\common\dynamic-buffer.hpp" />
     <ClInclude Include="source\common\exception.hpp" />
     <ClInclude Include="source\common\type-traits.hpp" />
+    <ClInclude Include="source\runtime-environment\assembly.hpp" />
+    <ClInclude Include="source\runtime-environment\instruction-executor.hpp" />
+    <ClInclude Include="source\runtime-environment\instruction-set.hpp" />
     <ClInclude Include="source\runtime-environment\register-set.hpp" />
+    <ClInclude Include="source\runtime-environment\runtime-scope.hpp" />
     <ClInclude Include="source\runtime-environment\runtime-stack.hpp" />
+    <ClInclude Include="source\runtime-environment\runtime-context.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tests\main.cpp" />
+    <ClCompile Include="tests\runtime-environment\assembly-test.cpp" />
+    <ClCompile Include="tests\runtime-environment\runtime-context-test.cpp" />
+    <ClCompile Include="tests\runtime-environment\runtime-scope-test.cpp" />
     <ClCompile Include="tests\runtime-environment\runtime-stack-test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
