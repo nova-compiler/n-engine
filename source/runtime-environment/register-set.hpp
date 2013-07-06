@@ -1,5 +1,5 @@
 //
-// runtime-stack.hpp
+// register-set.hpp
 //
 // Copyright (c) 2013 Luis Garcia.
 // This source file is subject to terms of the MIT License. (See accompanying file LICENSE)
@@ -27,7 +27,7 @@ namespace Nova {
 		// Comparison register.
 		cp
 	};
-	
+
 	class RegisterSet {
 		std::int64_t _rRegisters[8];
 		refaddr_t _mRegisters[4];
